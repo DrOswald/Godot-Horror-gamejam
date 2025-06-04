@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://jiaoiqk6br05"]
+
+[ext_resource type="Texture2D" uid="uid://bvo5r5nxy40xd" path="res://icon.svg" id="1_ig7tw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xm2m"]
+sky_top_color = Color(0.570295, 0.0886676, 0.170661, 1)
+sky_horizon_color = Color(0.500854, 0.372697, 0.384195, 1)
+ground_horizon_color = Color(0.500854, 0.372697, 0.384195, 1)
+energy_multiplier = 0.25
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
+albedo_texture = ExtResource("1_ig7tw")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
+material = SubResource("StandardMaterial3D_lquwl")
+size = Vector3(5, 1, 5)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bvp3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, 6.40269e-09, -8.7188e-08, 0, 0.997314, 0.0732382, 8.74228e-08, 0.0732382, -0.997314, 0, 0, 0)
+light_color = Color(0.863704, 0.458012, 0.262328, 1)
+light_energy = 10.75
+shadow_enabled = true
+directional_shadow_max_distance = 335.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7mycd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.727207, 1.2413)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.747647, 0, -0.664096, 0, 1, 0, 0.664096, 0, 0.747647, 1.51896, 1.17291, -0.538162)
+texture = ExtResource("1_ig7tw")
